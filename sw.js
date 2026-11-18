@@ -1,6 +1,6 @@
 // Sam App offline cache. Bump VERSION whenever any app file changes.
 const PREFIX = "samapp-";
-const VERSION = PREFIX + "v1";
+const VERSION = PREFIX + "v2";
 const FILES = [
   "./",
   "./index.html",

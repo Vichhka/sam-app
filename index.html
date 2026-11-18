@@ -95,7 +95,7 @@ const FB_CONFIG={apiKey:"AIzaSyBJ9Z8m5T-ql9_AUV6raG7xz_9Rwh81R0o",authDomain:"he
 const USER_DOMAIN='@hello-laundry.app',TOKEN=7000,LOCK_AFTER=60000;
 
 const T={
-en:{hi_m:"Good morning",hi_a:"Good afternoon",hi_e:"Good evening",signin:"Sign in",user:"Username",pass:"Password",signHelp:"Use your Hello Laundry owner username and password.",wrong:"Wrong username or password.",netErr:"No internet. Try again.",
+en:{hi_m:"Good morning",hi_a:"Good afternoon",hi_e:"Good evening",signin:"Sign in",user:"Username",pass:"Password",signHelp:"Use a Hello Laundry owner username and password.",wrong:"Wrong username or password.",netErr:"No internet. Try again.",
   notOwner:"This app is only for the shop owner. Please sign in with the owner account.",signout:"Sign out",loading:"Loading…",
   hl:"Hello Laundry",hlSub:"Today, live from the shop",today:"Today",netToday:"Net profit today",sales:"Sales",cogs:"Cost of goods",exp:"Expenses",cust:"Customers",notRec:"—",
   closed:"Day closed by {w} at {t}",notClosed:"Day not closed yet",tokOut:"{n} tokens sold but not collected yet",tokOk:"Tokens balanced",low:"Low in storeroom: {n} item(s)",
@@ -236,12 +236,13 @@ function cacheSave(){try{ls.set('sam_cache',JSON.stringify({items:S.items,days:S
 function cacheLoad(){try{const c=JSON.parse(ls.get('sam_cache')||'null');if(c){S.items=c.items||{};S.days=c.days||{};S.exp=c.exp||{}}}catch(e){}}
 async function start(u){
   unsubs.forEach(f=>f());unsubs=[];
-  if(!u){S.mode='login';S.items={};S.days={};S.exp={};ls.del('sam_cache');render();return}
+  if(!u){S.mode='login';S.items={};S.days={};S.exp={};ls.del('sam_cache');ls.del('sam_shop');render();return}
   S.user=String(u.email||'').replace(USER_DOMAIN,'');cacheLoad();
-  let shop=null;
-  try{const d=await auth.db.collection('users').doc(u.uid).get();shop=d.exists?d.data().shop:null}catch(e){S.offline=true}
-  if(shop&&shop!==u.uid){S.mode='notOwner';render();return}
-  shop=u.uid;S.mode='home';render();
+  let shop=ls.get('sam_shop')||null;
+  try{const d=await auth.db.collection('users').doc(u.uid).get();shop=(d.exists&&d.data().shop)||u.uid}catch(e){S.offline=true;shop=shop||u.uid}
+  if(shop!==u.uid){let owners=[];try{const sd=await auth.db.collection('shops').doc(shop).get();owners=(sd.exists&&sd.data().owners)||[]}catch(e){}
+    if(owners.indexOf(u.uid)<0&&!S.offline){S.mode='notOwner';render();return}}
+  ls.set('sam_shop',shop);S.mode='home';render();
   if(S.locked)unlock();
   const base=auth.db.collection('shops').doc(shop),err=()=>{S.offline=true;render()},ok=s=>{S.offline=!!(s.metadata&&s.metadata.fromCache&&!navigator.onLine)};
   const back=new Date();back.setDate(back.getDate()-45);
