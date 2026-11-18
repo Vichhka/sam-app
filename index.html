@@ -92,6 +92,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16p
 // ---- Hello Laundry connection (read only) ----
 const LAUNDRY_URL='https://vichhka.github.io/hello-laundry/';
 const FB_CONFIG={apiKey:"AIzaSyBJ9Z8m5T-ql9_AUV6raG7xz_9Rwh81R0o",authDomain:"hello-laundry-15d1c.firebaseapp.com",projectId:"hello-laundry-15d1c",storageBucket:"hello-laundry-15d1c.firebasestorage.app",messagingSenderId:"1031664985635",appId:"1:1031664985635:web:b9668eea9b54cf4a84f396"};
+const HR_URL='https://vichhka.github.io/hr-lta/',HR_API='https://script.google.com/macros/s/AKfycby1bIJSnZ9FJa-NCee16xqjzjHdrbwjR5mmJqVWPQw2xDSyAp2SLL54mVeBaYUDr1l5-w/exec';
 const PT_URL='https://vichhka.github.io/kip-ledger/';
 const PT_CONFIG={apiKey:"AIzaSyBmQIeNOJEaksY4qZpizroWe-tju6tay2w",authDomain:"kip-ledger.firebaseapp.com",projectId:"kip-ledger",storageBucket:"kip-ledger.firebasestorage.app",messagingSenderId:"16996076721",appId:"1:16996076721:web:55675cba8af62eaa3ea690"};
 const PT_SYM={LAK:'₭',THB:'฿',USD:'$',CNY:'¥'},PT_RATES={USD:21500,THB:660,CNY:3000};
@@ -103,7 +104,7 @@ en:{hi_m:"Good morning",hi_a:"Good afternoon",hi_e:"Good evening",signin:"Sign i
   hl:"Hello Laundry",hlSub:"Today, live from the shop",today:"Today",netToday:"Net profit today",sales:"Sales",cogs:"Cost of goods",exp:"Expenses",cust:"Customers",notRec:"—",
   closed:"Day closed by {w} at {t}",notClosed:"Day not closed yet",tokOut:"{n} tokens sold but not collected yet",tokOk:"Tokens balanced",low:"Low in storeroom: {n} item(s)",
   month:"This month",netMonth:"Net profit",days7:"Last 7 days sales",openHL:"Open Hello Laundry",closedDays:"Days closed",
-  pt:"ProTracker",ptSub:"My own expenses",ptConnect:"Sign in to ProTracker once to see your expenses here. Sam App only reads them.",ptEmail:"ProTracker email",ptGoogle:"Sign in with Google",ptIn:"Connect ProTracker",ptMonth:"Spent this month",ptToday:"Today",ptBudget:"Budget",ptLeft:"left",ptOver:"over budget",ptTop:"Top this month",ptLast:"Latest",ptNone:"No expenses this month yet.",openPT:"Open ProTracker",ptOut:"Disconnect ProTracker",ptErr:"Couldn't sign in to ProTracker.",inKip:"in kip",fp:"Fingerprint app",fpSub:"Coming later",
+  pt:"ProTracker",ptSub:"My own expenses",ptConnect:"Sign in to ProTracker once to see your expenses here. Sam App only reads them.",ptEmail:"ProTracker email",ptGoogle:"Sign in with Google",ptIn:"Connect ProTracker",ptMonth:"Spent this month",ptToday:"Today",ptBudget:"Budget",ptLeft:"left",ptOver:"over budget",ptTop:"Top this month",ptLast:"Latest",ptNone:"No expenses this month yet.",openPT:"Open ProTracker",ptOut:"Disconnect ProTracker",ptErr:"Couldn't sign in to ProTracker.",inKip:"in kip",fp:"HR LTA",fpSub:"Staff attendance today",hrPin:"Admin PIN",hrConnect:"Type your HR LTA admin PIN once. Sam App only reads attendance.",hrIn:"Connect HR LTA",hrInN:"Checked in",hrOutN:"Checked out",hrWait:"Requests waiting",hrFlag:"Flagged",hrMiss:"No scan yet ({n}, includes OFF / leave)",hrAll:"Everyone has scanned",hrLast:"Latest scans",hrNone:"No scans yet today.",openHR:"Open HR LTA",hrOut:"Disconnect HR LTA",hrErr:"Wrong PIN or no internet.",wIN:"in",wOUT:"out",hrRef:"Refresh",
   lockT:"Sam App is locked",unlock:"Unlock",usePw:"Sign in with password instead",lockOn:"Lock with Face ID / fingerprint",lockHelp:"Asks for your face or fingerprint every time you open the app.",
   noBio:"This phone can't use Face ID or fingerprint here.",lockSet:"Lock is on",lockOff:"Lock is off",settings:"Settings",kip:"kip",offline:"Offline: showing the last saved numbers"},
 lo:{hi_m:"ສະບາຍດີຕອນເຊົ້າ",hi_a:"ສະບາຍດີຕອນບ່າຍ",hi_e:"ສະບາຍດີຕອນແລງ",signin:"ເຂົ້າສູ່ລະບົບ",user:"ຊື່ຜູ້ໃຊ້",pass:"ລະຫັດຜ່ານ",signHelp:"ໃຊ້ຊື່ຜູ້ໃຊ້ ແລະ ລະຫັດຜ່ານ ເຈົ້າຂອງຮ້ານ Hello Laundry.",wrong:"ຊື່ຜູ້ໃຊ້ ຫຼື ລະຫັດຜ່ານບໍ່ຖືກ.",netErr:"ບໍ່ມີອິນເຕີເນັດ. ລອງໃໝ່.",
@@ -111,12 +112,13 @@ lo:{hi_m:"ສະບາຍດີຕອນເຊົ້າ",hi_a:"ສະບາຍ�
   hl:"Hello Laundry",hlSub:"ມື້ນີ້, ຂໍ້ມູນສົດຈາກຮ້ານ",today:"ມື້ນີ້",netToday:"ກຳໄລສຸດທິມື້ນີ້",sales:"ຍອດຂາຍ",cogs:"ຕົ້ນທຶນສິນຄ້າ",exp:"ລາຍຈ່າຍ",cust:"ລູກຄ້າ",notRec:"—",
   closed:"ປິດຍອດໂດຍ {w} ເວລາ {t}",notClosed:"ມື້ນີ້ຍັງບໍ່ໄດ້ປິດຍອດ",tokOut:"ຫຼຽນຂາຍແລ້ວ {n} ຫຼຽນ ຍັງບໍ່ໄດ້ເກັບ",tokOk:"ຫຼຽນຕົງກັນ",low:"ສິນຄ້າໃກ້ໝົດໃນສາງ {n} ລາຍການ",
   month:"ເດືອນນີ້",netMonth:"ກຳໄລສຸດທິ",days7:"ຍອດຂາຍ 7 ມື້ຜ່ານມາ",openHL:"ເປີດ Hello Laundry",closedDays:"ມື້ທີ່ປິດຍອດ",
-  pt:"ProTracker",ptSub:"ລາຍຈ່າຍສ່ວນຕົວຂອງຂ້ອຍ",ptConnect:"ເຂົ້າ ProTracker ຄັ້ງດຽວ ເພື່ອເບິ່ງລາຍຈ່າຍຢູ່ນີ້. Sam App ອ່ານຢ່າງດຽວ.",ptEmail:"ອີເມວ ProTracker",ptGoogle:"ເຂົ້າດ້ວຍ Google",ptIn:"ເຊື່ອມ ProTracker",ptMonth:"ໃຊ້ຈ່າຍເດືອນນີ້",ptToday:"ມື້ນີ້",ptBudget:"ງົບປະມານ",ptLeft:"ເຫຼືອ",ptOver:"ເກີນງົບ",ptTop:"ໃຊ້ຫຼາຍສຸດເດືອນນີ້",ptLast:"ລ່າສຸດ",ptNone:"ເດືອນນີ້ຍັງບໍ່ມີລາຍຈ່າຍ.",openPT:"ເປີດ ProTracker",ptOut:"ຕັດການເຊື່ອມ ProTracker",ptErr:"ເຂົ້າ ProTracker ບໍ່ໄດ້.",inKip:"ເປັນກີບ",fp:"ແອັບລາຍນິ້ວມື",fpSub:"ຈະມາພາຍຫຼັງ",
+  pt:"ProTracker",ptSub:"ລາຍຈ່າຍສ່ວນຕົວຂອງຂ້ອຍ",ptConnect:"ເຂົ້າ ProTracker ຄັ້ງດຽວ ເພື່ອເບິ່ງລາຍຈ່າຍຢູ່ນີ້. Sam App ອ່ານຢ່າງດຽວ.",ptEmail:"ອີເມວ ProTracker",ptGoogle:"ເຂົ້າດ້ວຍ Google",ptIn:"ເຊື່ອມ ProTracker",ptMonth:"ໃຊ້ຈ່າຍເດືອນນີ້",ptToday:"ມື້ນີ້",ptBudget:"ງົບປະມານ",ptLeft:"ເຫຼືອ",ptOver:"ເກີນງົບ",ptTop:"ໃຊ້ຫຼາຍສຸດເດືອນນີ້",ptLast:"ລ່າສຸດ",ptNone:"ເດືອນນີ້ຍັງບໍ່ມີລາຍຈ່າຍ.",openPT:"ເປີດ ProTracker",ptOut:"ຕັດການເຊື່ອມ ProTracker",ptErr:"ເຂົ້າ ProTracker ບໍ່ໄດ້.",inKip:"ເປັນກີບ",fp:"HR LTA",fpSub:"ການເຂົ້າວຽກຂອງພະນັກງານມື້ນີ້",hrPin:"PIN ແອັດມິນ",hrConnect:"ພິມ PIN ແອັດມິນ HR LTA ຄັ້ງດຽວ. Sam App ອ່ານຢ່າງດຽວ.",hrIn:"ເຊື່ອມ HR LTA",hrInN:"ເຂົ້າວຽກແລ້ວ",hrOutN:"ອອກວຽກແລ້ວ",hrWait:"ຄຳຂໍລໍຖ້າ",hrFlag:"ຖືກໝາຍ",hrMiss:"ຍັງບໍ່ສະແກນ ({n}, ລວມ OFF / ລາພັກ)",hrAll:"ທຸກຄົນສະແກນແລ້ວ",hrLast:"ສະແກນລ່າສຸດ",hrNone:"ມື້ນີ້ຍັງບໍ່ມີການສະແກນ.",openHR:"ເປີດ HR LTA",hrOut:"ຕັດການເຊື່ອມ HR LTA",hrErr:"PIN ບໍ່ຖືກ ຫຼື ບໍ່ມີອິນເຕີເນັດ.",wIN:"ເຂົ້າ",wOUT:"ອອກ",hrRef:"ໂຫຼດໃໝ່",
   lockT:"Sam App ຖືກລັອກ",unlock:"ປົດລັອກ",usePw:"ເຂົ້າດ້ວຍລະຫັດຜ່ານແທນ",lockOn:"ລັອກດ້ວຍ Face ID / ລາຍນິ້ວມື",lockHelp:"ຖາມໜ້າ ຫຼື ລາຍນິ້ວມື ທຸກຄັ້ງທີ່ເປີດແອັບ.",
   noBio:"ໂທລະສັບນີ້ໃຊ້ Face ID ຫຼື ລາຍນິ້ວມື ຢູ່ນີ້ບໍ່ໄດ້.",lockSet:"ເປີດລັອກແລ້ວ",lockOff:"ປິດລັອກແລ້ວ",settings:"ຕັ້ງຄ່າ",kip:"ກີບ",offline:"ອອບລາຍ: ສະແດງຕົວເລກທີ່ບັນທຶກໄວ້ລ່າສຸດ"}};
 const DAY_LO=['ອາທິດ','ຈັນ','ອັງຄານ','ພຸດ','ພະຫັດ','ສຸກ','ເສົາ'],MON_LO=['ມັງກອນ','ກຸມພາ','ມີນາ','ເມສາ','ພຶດສະພາ','ມິຖຸນາ','ກໍລະກົດ','ສິງຫາ','ກັນຍາ','ຕຸລາ','ພະຈິກ','ທັນວາ'];
 
 const ls={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},del:k=>{try{localStorage.removeItem(k)}catch(e){}}};
+const H={state:'out',data:null,err:''};
 const P={state:'loading',user:null,entries:[],set:null,err:''};
 const S={lang:ls.get('sam_lang')||'en',mode:'loading',err:'',items:{},days:{},exp:{},locked:!!ls.get('sam_lock'),offline:false,showSet:false};
 const t=(k,v)=>{let s=(T[S.lang]||T.en)[k]||T.en[k]||k;if(v)Object.keys(v).forEach(x=>{s=s.replace('{'+x+'}',v[x])});return s};
@@ -195,16 +197,44 @@ function vHome(){
   h+='<a class="btn" href="'+LAUNDRY_URL+'">'+t('openHL')+' →</a></div>';
   // coming
   h+=vPT();
-  h+='<div class="card soon"><div class="logo">FP</div><div class="grow"><h2 style="font-size:17px">'+t('fp')+'</h2><div class="mute" style="font-size:13px">'+t('fpSub')+'</div></div></div>';
+  h+=vHR();
   // settings
   h+='<div class="card"><div class="switch"><div class="grow"><div style="font-weight:600">'+t('lockOn')+'</div><div class="mute" style="font-size:13px">'+t('lockHelp')+'</div></div><button class="tog'+(ls.get('sam_lock')?' on':'')+'" data-act="lockTog" aria-label="'+t('lockOn')+'"></button></div>'
-    +(P.state==='in'?'<button class="btn ghost" data-act="ptOut">'+t('ptOut')+'</button>':'')+'<button class="btn ghost" data-act="signout">'+t('signout')+'</button></div>';
+    +(ls.get('sam_hr')?'<button class="btn ghost" data-act="hrOut">'+t('hrOut')+'</button>':'')+(P.state==='in'?'<button class="btn ghost" data-act="ptOut">'+t('ptOut')+'</button>':'')+'<button class="btn ghost" data-act="signout">'+t('signout')+'</button></div>';
   h+='<div class="foot">Sam App · '+esc(S.user||'')+'</div>';
   return h;
 }
 function ptRate(c){const r=P.set&&P.set.rates;return c==='LAK'?1:(r&&r[c]>0?r[c]:PT_RATES[c]||1)}
 const ptLAK=e=>num(e.amount)*ptRate(e.currency);
 const ptFmt=(v,c)=>(PT_SYM[c]||'')+Number(v||0).toLocaleString('en-US',{maximumFractionDigits:c==='LAK'?0:2});
+function vHR(){
+  let h='<div class="card"><div class="ch"><div class="logo" style="background:#8A5A12">HR</div><div class="grow"><h2>'+t('fp')+'</h2><div class="sub">'+t('fpSub')+'</div></div>'+(H.state==='in'?'<button class="chip" data-act="hrLoad">'+t('hrRef')+'</button>':'')+'</div>';
+  if(H.state==='loading'&&!H.data)return h+'<p class="mute">'+t('loading')+'</p></div>';
+  if(H.state==='out'||!H.data){
+    return h+'<p class="mute" style="font-size:14px">'+t('hrConnect')+'</p><form id="hrf"><div class="field"><label for="hp">'+t('hrPin')+'</label><input id="hp" type="password" inputmode="numeric" autocomplete="off"></div><div class="err">'+esc(H.err)+'</div>'
+      +'<button class="btn" type="submit" style="background:#8A5A12;color:#fff">'+t('hrIn')+'</button></form></div>';
+  }
+  const d=H.data,rows=d.rows||[],ids=ty=>new Set(rows.filter(r=>r.type===ty).map(r=>r.id)),inI=ids('IN'),outI=ids('OUT');
+  const pend=(d.requests||[]).filter(r=>r.status==='PENDING').length,flag=rows.filter(r=>r.status==='FLAG').length;
+  const miss=(d.staff||[]).filter(x=>!inI.has(x.id)&&!outI.has(x.id));
+  h+='<div class="grid"><div class="tile"><div class="l">'+t('hrInN')+'</div><div class="v num">'+inI.size+'</div></div><div class="tile"><div class="l">'+t('hrOutN')+'</div><div class="v num">'+outI.size+'</div></div></div>';
+  if(pend)h+='<div class="flag warn"><span class="dot"></span>'+t('hrWait')+': '+pend+'</div>';
+  if(flag)h+='<div class="flag warn"><span class="dot"></span>'+t('hrFlag')+': '+flag+'</div>';
+  h+=miss.length?'<div class="sec">'+t('hrMiss',{n:miss.length})+'</div><div style="display:flex;flex-wrap:wrap;gap:6px">'+miss.slice(0,12).map(x=>'<span class="chip" style="min-height:0;padding:5px 10px;font-weight:500">'+esc(x.name)+'</span>').join('')+(miss.length>12?'<span class="mute" style="padding:5px">+'+(miss.length-12)+'</span>':'')+'</div>'
+    :'<div class="flag ok"><span class="dot"></span>'+t('hrAll')+'</div>';
+  const last=rows.slice(-4).reverse();
+  h+='<div class="sec">'+t('hrLast')+'</div>'+(last.length?'<div class="rows">'+last.map(r=>'<div class="r"><span>'+esc(String(r.time||'').slice(0,5))+' · '+esc(r.name)+'</span><b>'+t('w'+r.type)+'</b></div>').join('')+'</div>':'<p class="mute">'+t('hrNone')+'</p>');
+  return h+'<a class="btn" style="background:#8A5A12;color:#fff" href="'+HR_URL+'">'+t('openHR')+' →</a></div>';
+}
+async function hrLoad(pin){
+  pin=pin||ls.get('sam_hr');if(!pin){H.state='out';render();return}
+  H.state='loading';if(!H.data)render();
+  try{const r=await fetch(HR_API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'day',admin:pin,date:dkey()})});
+    const j=await r.json();if(!j.ok)throw new Error(j.error||'x');
+    H.data=j;H.state='in';H.err='';ls.set('sam_hr',pin);H.at=Date.now();
+  }catch(e){if(!H.data){H.state='out';H.err=t('hrErr')}else H.state='in'}
+  render();
+}
 function vPT(){
   let h='<div class="card"><div class="ch"><div class="logo" style="background:#5B3FA8">PT</div><div class="grow"><h2>'+t('pt')+'</h2><div class="sub">'+t('ptSub')+'</div></div></div>';
   if(P.state==='loading'){return h+'<p class="mute">'+t('loading')+'</p></div>'}
@@ -235,7 +265,7 @@ function render(){
   if(S.mode==='login'){const u=$('#lu')?$('#lu').value:'';a.innerHTML=vLogin();if(u)$('#lu').value=u;return}
   if(S.mode==='notOwner'){a.innerHTML='<div class="center" style="text-align:center"><p>'+t('notOwner')+'</p><button class="btn" data-act="signout">'+t('signout')+'</button></div>';return}
   if(S.locked){a.innerHTML=vLock();return}
-  const y=window.scrollY,keep={},fid=document.activeElement&&document.activeElement.id;['pe','pp'].forEach(i=>{const el=$('#'+i);if(el)keep[i]=el.value});
+  const y=window.scrollY,keep={},fid=document.activeElement&&document.activeElement.id;['pe','pp','hp'].forEach(i=>{const el=$('#'+i);if(el)keep[i]=el.value});
   a.innerHTML=vHome();Object.keys(keep).forEach(i=>{const el=$('#'+i);if(el)el.value=keep[i]});if(fid&&$('#'+fid))$('#'+fid).focus();window.scrollTo(0,y);
 }
 
@@ -258,6 +288,8 @@ async function unlock(){
 let hiddenAt=0;
 document.addEventListener('visibilitychange',()=>{
   if(document.hidden){hiddenAt=Date.now()}
+  else if(S.mode==='home'&&ls.get('sam_hr')&&(!H.at||Date.now()-H.at>120000))hrLoad();
+  if(document.hidden){}
   else if(ls.get('sam_lock')&&hiddenAt&&Date.now()-hiddenAt>LOCK_AFTER&&S.mode==='home'){S.locked=true;render();unlock()}
 });
 
@@ -285,7 +317,7 @@ async function start(u){
   try{const d=await auth.db.collection('users').doc(u.uid).get();shop=(d.exists&&d.data().shop)||u.uid}catch(e){S.offline=true;shop=shop||u.uid}
   if(shop!==u.uid){let owners=[];try{const sd=await auth.db.collection('shops').doc(shop).get();owners=(sd.exists&&sd.data().owners)||[]}catch(e){}
     if(owners.indexOf(u.uid)<0&&!S.offline){S.mode='notOwner';render();return}}
-  ls.set('sam_shop',shop);S.mode='home';render();
+  ls.set('sam_shop',shop);S.mode='home';render();if(ls.get('sam_hr'))hrLoad();
   if(S.locked)unlock();
   const base=auth.db.collection('shops').doc(shop),err=()=>{S.offline=true;render()},ok=s=>{S.offline=!!(s.metadata&&s.metadata.fromCache&&!navigator.onLine)};
   const back=new Date();back.setDate(back.getDate()-45);
@@ -299,13 +331,16 @@ async function start(u){
 const ACT={
   lang(){S.lang=S.lang==='en'?'lo':'en';ls.set('sam_lang',S.lang);render()},
   unlock(){unlock()},
-  signout(){ls.del('sam_lock');S.locked=false;if(pt)pt.a.signOut();if(auth)auth.a.signOut()},
+  signout(){ls.del('sam_lock');ls.del('sam_hr');H.state='out';H.data=null;S.locked=false;if(pt)pt.a.signOut();if(auth)auth.a.signOut()},
   ptOut(){if(pt)pt.a.signOut()},
+  hrLoad(){hrLoad()},
+  hrOut(){ls.del('sam_hr');H.state='out';H.data=null;render()},
   ptGoogle(){if(!pt)return;pt.a.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(e=>{if(e&&e.code!=='auth/popup-closed-by-user'){P.err=t('ptErr');render()}})},
   lockTog(){if(ls.get('sam_lock')){ls.del('sam_lock');toast(t('lockOff'));render()}else lockOn()}
 };
 document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(b&&ACT[b.dataset.act]){e.preventDefault();ACT[b.dataset.act]()}});
 document.addEventListener('submit',e=>{
+  if(e.target.id==='hrf'){e.preventDefault();const v=$('#hp').value.trim();if(v)hrLoad(v);return}
   if(e.target.id==='ptf'){e.preventDefault();const em=$('#pe').value.trim(),pw=$('#pp').value;if(!em||!pw)return;P.err='';
     pt.a.signInWithEmailAndPassword(em,pw).catch(x=>{P.err=t(x&&x.code==='auth/network-request-failed'?'netErr':'ptErr');render()});return}
   if(e.target.id!=='lf')return;e.preventDefault();
