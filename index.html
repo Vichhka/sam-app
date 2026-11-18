@@ -92,6 +92,9 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16p
 // ---- Hello Laundry connection (read only) ----
 const LAUNDRY_URL='https://vichhka.github.io/hello-laundry/';
 const FB_CONFIG={apiKey:"AIzaSyBJ9Z8m5T-ql9_AUV6raG7xz_9Rwh81R0o",authDomain:"hello-laundry-15d1c.firebaseapp.com",projectId:"hello-laundry-15d1c",storageBucket:"hello-laundry-15d1c.firebasestorage.app",messagingSenderId:"1031664985635",appId:"1:1031664985635:web:b9668eea9b54cf4a84f396"};
+const PT_URL='https://vichhka.github.io/kip-ledger/';
+const PT_CONFIG={apiKey:"AIzaSyBmQIeNOJEaksY4qZpizroWe-tju6tay2w",authDomain:"kip-ledger.firebaseapp.com",projectId:"kip-ledger",storageBucket:"kip-ledger.firebasestorage.app",messagingSenderId:"16996076721",appId:"1:16996076721:web:55675cba8af62eaa3ea690"};
+const PT_SYM={LAK:'₭',THB:'฿',USD:'$',CNY:'¥'},PT_RATES={USD:21500,THB:660,CNY:3000};
 const USER_DOMAIN='@hello-laundry.app',TOKEN=7000,LOCK_AFTER=60000;
 
 const T={
@@ -100,7 +103,7 @@ en:{hi_m:"Good morning",hi_a:"Good afternoon",hi_e:"Good evening",signin:"Sign i
   hl:"Hello Laundry",hlSub:"Today, live from the shop",today:"Today",netToday:"Net profit today",sales:"Sales",cogs:"Cost of goods",exp:"Expenses",cust:"Customers",notRec:"—",
   closed:"Day closed by {w} at {t}",notClosed:"Day not closed yet",tokOut:"{n} tokens sold but not collected yet",tokOk:"Tokens balanced",low:"Low in storeroom: {n} item(s)",
   month:"This month",netMonth:"Net profit",days7:"Last 7 days sales",openHL:"Open Hello Laundry",closedDays:"Days closed",
-  pt:"ProTracker",ptSub:"My expenses · coming next",fp:"Fingerprint app",fpSub:"Coming later",
+  pt:"ProTracker",ptSub:"My own expenses",ptConnect:"Sign in to ProTracker once to see your expenses here. Sam App only reads them.",ptEmail:"ProTracker email",ptGoogle:"Sign in with Google",ptIn:"Connect ProTracker",ptMonth:"Spent this month",ptToday:"Today",ptBudget:"Budget",ptLeft:"left",ptOver:"over budget",ptTop:"Top this month",ptLast:"Latest",ptNone:"No expenses this month yet.",openPT:"Open ProTracker",ptOut:"Disconnect ProTracker",ptErr:"Couldn't sign in to ProTracker.",inKip:"in kip",fp:"Fingerprint app",fpSub:"Coming later",
   lockT:"Sam App is locked",unlock:"Unlock",usePw:"Sign in with password instead",lockOn:"Lock with Face ID / fingerprint",lockHelp:"Asks for your face or fingerprint every time you open the app.",
   noBio:"This phone can't use Face ID or fingerprint here.",lockSet:"Lock is on",lockOff:"Lock is off",settings:"Settings",kip:"kip",offline:"Offline: showing the last saved numbers"},
 lo:{hi_m:"ສະບາຍດີຕອນເຊົ້າ",hi_a:"ສະບາຍດີຕອນບ່າຍ",hi_e:"ສະບາຍດີຕອນແລງ",signin:"ເຂົ້າສູ່ລະບົບ",user:"ຊື່ຜູ້ໃຊ້",pass:"ລະຫັດຜ່ານ",signHelp:"ໃຊ້ຊື່ຜູ້ໃຊ້ ແລະ ລະຫັດຜ່ານ ເຈົ້າຂອງຮ້ານ Hello Laundry.",wrong:"ຊື່ຜູ້ໃຊ້ ຫຼື ລະຫັດຜ່ານບໍ່ຖືກ.",netErr:"ບໍ່ມີອິນເຕີເນັດ. ລອງໃໝ່.",
@@ -108,12 +111,13 @@ lo:{hi_m:"ສະບາຍດີຕອນເຊົ້າ",hi_a:"ສະບາຍ�
   hl:"Hello Laundry",hlSub:"ມື້ນີ້, ຂໍ້ມູນສົດຈາກຮ້ານ",today:"ມື້ນີ້",netToday:"ກຳໄລສຸດທິມື້ນີ້",sales:"ຍອດຂາຍ",cogs:"ຕົ້ນທຶນສິນຄ້າ",exp:"ລາຍຈ່າຍ",cust:"ລູກຄ້າ",notRec:"—",
   closed:"ປິດຍອດໂດຍ {w} ເວລາ {t}",notClosed:"ມື້ນີ້ຍັງບໍ່ໄດ້ປິດຍອດ",tokOut:"ຫຼຽນຂາຍແລ້ວ {n} ຫຼຽນ ຍັງບໍ່ໄດ້ເກັບ",tokOk:"ຫຼຽນຕົງກັນ",low:"ສິນຄ້າໃກ້ໝົດໃນສາງ {n} ລາຍການ",
   month:"ເດືອນນີ້",netMonth:"ກຳໄລສຸດທິ",days7:"ຍອດຂາຍ 7 ມື້ຜ່ານມາ",openHL:"ເປີດ Hello Laundry",closedDays:"ມື້ທີ່ປິດຍອດ",
-  pt:"ProTracker",ptSub:"ລາຍຈ່າຍຂອງຂ້ອຍ · ຕໍ່ໄປ",fp:"ແອັບລາຍນິ້ວມື",fpSub:"ຈະມາພາຍຫຼັງ",
+  pt:"ProTracker",ptSub:"ລາຍຈ່າຍສ່ວນຕົວຂອງຂ້ອຍ",ptConnect:"ເຂົ້າ ProTracker ຄັ້ງດຽວ ເພື່ອເບິ່ງລາຍຈ່າຍຢູ່ນີ້. Sam App ອ່ານຢ່າງດຽວ.",ptEmail:"ອີເມວ ProTracker",ptGoogle:"ເຂົ້າດ້ວຍ Google",ptIn:"ເຊື່ອມ ProTracker",ptMonth:"ໃຊ້ຈ່າຍເດືອນນີ້",ptToday:"ມື້ນີ້",ptBudget:"ງົບປະມານ",ptLeft:"ເຫຼືອ",ptOver:"ເກີນງົບ",ptTop:"ໃຊ້ຫຼາຍສຸດເດືອນນີ້",ptLast:"ລ່າສຸດ",ptNone:"ເດືອນນີ້ຍັງບໍ່ມີລາຍຈ່າຍ.",openPT:"ເປີດ ProTracker",ptOut:"ຕັດການເຊື່ອມ ProTracker",ptErr:"ເຂົ້າ ProTracker ບໍ່ໄດ້.",inKip:"ເປັນກີບ",fp:"ແອັບລາຍນິ້ວມື",fpSub:"ຈະມາພາຍຫຼັງ",
   lockT:"Sam App ຖືກລັອກ",unlock:"ປົດລັອກ",usePw:"ເຂົ້າດ້ວຍລະຫັດຜ່ານແທນ",lockOn:"ລັອກດ້ວຍ Face ID / ລາຍນິ້ວມື",lockHelp:"ຖາມໜ້າ ຫຼື ລາຍນິ້ວມື ທຸກຄັ້ງທີ່ເປີດແອັບ.",
   noBio:"ໂທລະສັບນີ້ໃຊ້ Face ID ຫຼື ລາຍນິ້ວມື ຢູ່ນີ້ບໍ່ໄດ້.",lockSet:"ເປີດລັອກແລ້ວ",lockOff:"ປິດລັອກແລ້ວ",settings:"ຕັ້ງຄ່າ",kip:"ກີບ",offline:"ອອບລາຍ: ສະແດງຕົວເລກທີ່ບັນທຶກໄວ້ລ່າສຸດ"}};
 const DAY_LO=['ອາທິດ','ຈັນ','ອັງຄານ','ພຸດ','ພະຫັດ','ສຸກ','ເສົາ'],MON_LO=['ມັງກອນ','ກຸມພາ','ມີນາ','ເມສາ','ພຶດສະພາ','ມິຖຸນາ','ກໍລະກົດ','ສິງຫາ','ກັນຍາ','ຕຸລາ','ພະຈິກ','ທັນວາ'];
 
 const ls={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},del:k=>{try{localStorage.removeItem(k)}catch(e){}}};
+const P={state:'loading',user:null,entries:[],set:null,err:''};
 const S={lang:ls.get('sam_lang')||'en',mode:'loading',err:'',items:{},days:{},exp:{},locked:!!ls.get('sam_lock'),offline:false,showSet:false};
 const t=(k,v)=>{let s=(T[S.lang]||T.en)[k]||T.en[k]||k;if(v)Object.keys(v).forEach(x=>{s=s.replace('{'+x+'}',v[x])});return s};
 const $=s=>document.querySelector(s);
@@ -190,13 +194,40 @@ function vHome(){
     +'<div class="r"><span>'+t('closedDays')+'</span><b class="num">'+m.closed+' / '+m.days+'</b></div></div>';
   h+='<a class="btn" href="'+LAUNDRY_URL+'">'+t('openHL')+' →</a></div>';
   // coming
-  h+='<div class="card soon"><div class="logo">PT</div><div class="grow"><h2 style="font-size:17px">'+t('pt')+'</h2><div class="mute" style="font-size:13px">'+t('ptSub')+'</div></div></div>';
+  h+=vPT();
   h+='<div class="card soon"><div class="logo">FP</div><div class="grow"><h2 style="font-size:17px">'+t('fp')+'</h2><div class="mute" style="font-size:13px">'+t('fpSub')+'</div></div></div>';
   // settings
   h+='<div class="card"><div class="switch"><div class="grow"><div style="font-weight:600">'+t('lockOn')+'</div><div class="mute" style="font-size:13px">'+t('lockHelp')+'</div></div><button class="tog'+(ls.get('sam_lock')?' on':'')+'" data-act="lockTog" aria-label="'+t('lockOn')+'"></button></div>'
-    +'<button class="btn ghost" data-act="signout">'+t('signout')+'</button></div>';
+    +(P.state==='in'?'<button class="btn ghost" data-act="ptOut">'+t('ptOut')+'</button>':'')+'<button class="btn ghost" data-act="signout">'+t('signout')+'</button></div>';
   h+='<div class="foot">Sam App · '+esc(S.user||'')+'</div>';
   return h;
+}
+function ptRate(c){const r=P.set&&P.set.rates;return c==='LAK'?1:(r&&r[c]>0?r[c]:PT_RATES[c]||1)}
+const ptLAK=e=>num(e.amount)*ptRate(e.currency);
+const ptFmt=(v,c)=>(PT_SYM[c]||'')+Number(v||0).toLocaleString('en-US',{maximumFractionDigits:c==='LAK'?0:2});
+function vPT(){
+  let h='<div class="card"><div class="ch"><div class="logo" style="background:#5B3FA8">PT</div><div class="grow"><h2>'+t('pt')+'</h2><div class="sub">'+t('ptSub')+'</div></div></div>';
+  if(P.state==='loading'){return h+'<p class="mute">'+t('loading')+'</p></div>'}
+  if(P.state==='out'){
+    return h+'<p class="mute" style="font-size:14px">'+t('ptConnect')+'</p><form id="ptf"><div class="field"><label for="pe">'+t('ptEmail')+'</label><input id="pe" type="email" autocomplete="username" autocapitalize="none"></div>'
+      +'<div class="field"><label for="pp">'+t('pass')+'</label><input id="pp" type="password" autocomplete="current-password"></div><div class="err">'+esc(P.err)+'</div>'
+      +'<button class="btn" type="submit">'+t('ptIn')+'</button></form><button class="btn ghost" data-act="ptGoogle">'+t('ptGoogle')+'</button></div>';
+  }
+  const k=dkey(),mk=k.slice(0,7),me=P.entries.filter(e=>e.date&&e.date.slice(0,7)===mk);
+  const month=me.reduce((a,e)=>a+ptLAK(e),0),today=me.filter(e=>e.date===k).reduce((a,e)=>a+ptLAK(e),0);
+  h+='<div class="hero" style="background:#5B3FA8"><div><div class="l">'+t('ptMonth')+'</div><div class="v num">'+fmt(month)+'</div></div><div class="s">'+t('kip')+'</div></div>';
+  const bud=P.set&&num(P.set.budget);
+  h+='<div class="grid"><div class="tile"><div class="l">'+t('ptToday')+'</div><div class="v num">'+fmt(today)+'</div></div>';
+  if(bud>0){const left=bud-month;h+='<div class="tile"><div class="l">'+t('ptBudget')+' '+fmt(bud)+'</div><div class="v num" style="color:'+(left<0?'var(--bad)':'var(--good)')+'">'+fmt(Math.abs(left))+' <span style="font-size:13px;font-weight:600">'+t(left<0?'ptOver':'ptLeft')+'</span></div></div>'}
+  else h+='<div class="tile"><div class="l">'+t('ptLast')+'</div><div class="v num">'+me.length+'</div></div>';
+  h+='</div>';
+  if(!me.length)return h+'<p class="mute" style="margin-top:12px">'+t('ptNone')+'</p><a class="btn" href="'+PT_URL+'">'+t('openPT')+' →</a></div>';
+  const by={};me.forEach(e=>{by[e.cat||'—']=(by[e.cat||'—']||0)+ptLAK(e)});
+  const top=Object.keys(by).sort((a,b)=>by[b]-by[a]).slice(0,4);
+  h+='<div class="sec">'+t('ptTop')+' · '+t('inKip')+'</div><div class="rows">'+top.map(c=>'<div class="r"><span>'+esc(c)+'</span><b class="num">'+fmt(by[c])+'</b></div>').join('')+'</div>';
+  const last=me.slice().sort((a,b)=>(b.date+String(b.ts||0))>(a.date+String(a.ts||0))?1:-1).slice(0,3);
+  h+='<div class="sec">'+t('ptLast')+'</div><div class="rows">'+last.map(e=>'<div class="r"><span class="grow" style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(e.cat||'')+(e.note?' · <span class="mute">'+esc(e.note)+'</span>':'')+'<br><span class="mute" style="font-size:12.5px">'+esc(e.date)+'</span></span><b class="num">'+ptFmt(num(e.amount),e.currency)+'</b></div>').join('')+'</div>';
+  return h+'<a class="btn" style="background:#5B3FA8;color:#fff" href="'+PT_URL+'">'+t('openPT')+' →</a></div>';
 }
 function render(){
   const a=$('#app');document.documentElement.lang=S.lang==='lo'?'lo':'en';
@@ -204,7 +235,8 @@ function render(){
   if(S.mode==='login'){const u=$('#lu')?$('#lu').value:'';a.innerHTML=vLogin();if(u)$('#lu').value=u;return}
   if(S.mode==='notOwner'){a.innerHTML='<div class="center" style="text-align:center"><p>'+t('notOwner')+'</p><button class="btn" data-act="signout">'+t('signout')+'</button></div>';return}
   if(S.locked){a.innerHTML=vLock();return}
-  const y=window.scrollY;a.innerHTML=vHome();window.scrollTo(0,y);
+  const y=window.scrollY,keep={},fid=document.activeElement&&document.activeElement.id;['pe','pp'].forEach(i=>{const el=$('#'+i);if(el)keep[i]=el.value});
+  a.innerHTML=vHome();Object.keys(keep).forEach(i=>{const el=$('#'+i);if(el)el.value=keep[i]});if(fid&&$('#'+fid))$('#'+fid).focus();window.scrollTo(0,y);
 }
 
 // ---- Face ID / fingerprint lock (WebAuthn, stays on this phone) ----
@@ -232,6 +264,17 @@ document.addEventListener('visibilitychange',()=>{
 // ---- data ----
 let unsubs=[];
 const auth=(()=>{try{firebase.initializeApp(FB_CONFIG);const db=firebase.firestore();try{db.enablePersistence({synchronizeTabs:true}).catch(()=>{})}catch(e){}return {a:firebase.auth(),db:db}}catch(e){return null}})();
+let ptUnsub=null;
+const pt=(()=>{try{const a=firebase.initializeApp(PT_CONFIG,'pt');return {a:a.auth(),db:a.firestore()}}catch(e){return null}})();
+function ptStart(u){
+  if(ptUnsub){ptUnsub.forEach(f=>f());ptUnsub=null}
+  if(!u){P.state='out';P.entries=[];P.set=null;render();return}
+  P.state='in';P.user=u;P.err='';render();
+  const base=pt.db.collection('users').doc(u.uid);
+  ptUnsub=[base.collection('entries').onSnapshot(s=>{P.entries=s.docs.map(d=>d.data());render()},()=>{}),
+    base.collection('meta').doc('settings').onSnapshot(d=>{P.set=d.exists?d.data():null;render()},()=>{})];
+}
+if(pt)pt.a.onAuthStateChanged(u=>ptStart(u));else P.state='out';
 function cacheSave(){try{ls.set('sam_cache',JSON.stringify({items:S.items,days:S.days,exp:S.exp}))}catch(e){}}
 function cacheLoad(){try{const c=JSON.parse(ls.get('sam_cache')||'null');if(c){S.items=c.items||{};S.days=c.days||{};S.exp=c.exp||{}}}catch(e){}}
 async function start(u){
@@ -256,11 +299,15 @@ async function start(u){
 const ACT={
   lang(){S.lang=S.lang==='en'?'lo':'en';ls.set('sam_lang',S.lang);render()},
   unlock(){unlock()},
-  signout(){ls.del('sam_lock');S.locked=false;if(auth)auth.a.signOut()},
+  signout(){ls.del('sam_lock');S.locked=false;if(pt)pt.a.signOut();if(auth)auth.a.signOut()},
+  ptOut(){if(pt)pt.a.signOut()},
+  ptGoogle(){if(!pt)return;pt.a.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(e=>{if(e&&e.code!=='auth/popup-closed-by-user'){P.err=t('ptErr');render()}})},
   lockTog(){if(ls.get('sam_lock')){ls.del('sam_lock');toast(t('lockOff'));render()}else lockOn()}
 };
 document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(b&&ACT[b.dataset.act]){e.preventDefault();ACT[b.dataset.act]()}});
 document.addEventListener('submit',e=>{
+  if(e.target.id==='ptf'){e.preventDefault();const em=$('#pe').value.trim(),pw=$('#pp').value;if(!em||!pw)return;P.err='';
+    pt.a.signInWithEmailAndPassword(em,pw).catch(x=>{P.err=t(x&&x.code==='auth/network-request-failed'?'netErr':'ptErr');render()});return}
   if(e.target.id!=='lf')return;e.preventDefault();
   const u=$('#lu').value.trim(),p=$('#lp').value;if(!u||!p)return;
   S.err='';const em=u.indexOf('@')>=0?u:u.toLowerCase()+USER_DOMAIN;
